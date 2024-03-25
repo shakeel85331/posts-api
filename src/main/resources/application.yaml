@@ -1,0 +1,42 @@
+spring:
+  application.name: posts-api
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+
+external:
+  posts-api:
+    url: https://jsonplaceholder.typicode.com
+
+logging:
+  level:
+    org.springframework.security: TRACE
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydbtest
+    username: sa
+    password: password
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydbprod
+    #test
+    username: "{cipher}4df3295a7e7d98ad7599b67762336771cd6550b4c4ecde4cf883eea2a11548f9"
+    password: "{cipher}845f9b9368dceba77cf0077bf904f6d7a58df3ba1455a38cbba5a55b80356a9d"
+
